@@ -1,7 +1,7 @@
 version: "2"
 services:
   vanillaforums:
-    image: vanillaforums
+    image: chidakiyo/vanilla-forums-docker:latest
     container_name: "vanillaforums"
     volumes:
       - "vanillaforums-data:/opt/vanillaforums"
