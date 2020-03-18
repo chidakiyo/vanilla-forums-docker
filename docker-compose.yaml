@@ -1,0 +1,27 @@
+version: "2"
+services:
+  vanillaforums:
+    image: vanillaforums
+    container_name: "vanillaforums"
+    volumes:
+      - "vanillaforums-data:/opt/vanillaforums"
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      VF_DB_HOST: "db:3306"
+  db:
+    image: mysql:5.7
+    container_name: "vanillaforums-db"
+    volumes:
+      - "db-data:/var/lib/mysql"
+      - ./mysqlconf:/etc/mysql/conf.d
+    environment:
+      MYSQL_DATABASE: vanillaforums
+      MYSQL_ROOT_PASSWORD: vanillaforums
+volumes:
+  db-data:
+    driver: local
+  vanillaforums-data:
+    driver: local
